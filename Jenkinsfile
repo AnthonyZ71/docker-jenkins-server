@@ -25,7 +25,7 @@ pipeline {
                 def customImage = docker.image("jenkins-builder:1.1.${env.BUILD_NUMBER}")
                 docker.withRegistry('https://sentinel:5000') {
                     customImage.push()
-                    customImage.push(('latest')
+                    customImage.push('latest')
                 }
             }
         }
