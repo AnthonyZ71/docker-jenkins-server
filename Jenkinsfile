@@ -14,10 +14,12 @@ pipeline {
         }
 
         stage('Scan Image') {
-            sh 'echo "scanning-registry:5000/jenkins-builder:1.1.${env.BUILD_NUMBER} Dockerfile" > anchore_images'
-            anchore 'anchore_images'
+            steps {
+                sh 'echo "scanning-registry:5000/jenkins-builder:1.1.${env.BUILD_NUMBER} Dockerfile" > anchore_images'
+                anchore 'anchore_images'
+            }
         }
 
-        
+
     }
 }
