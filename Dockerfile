@@ -32,6 +32,7 @@ RUN install-plugins.sh \
         bouncycastle-api \
         discord-notifier \
         docker \
+        docker-workflow \
         github \
         sonar \
         workflow-multibranch
