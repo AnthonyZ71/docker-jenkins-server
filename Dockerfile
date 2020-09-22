@@ -1,4 +1,4 @@
-FROM jenkins/jenkins
+FROM jenkins/jenkins:jdk11
 
 ## Configuration for Jenkins build pipelines
 
