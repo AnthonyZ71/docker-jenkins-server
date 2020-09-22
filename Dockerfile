@@ -1,27 +1,25 @@
-FROM jenkins/jenkins:jdk11
+FROM jenkins/jenkins:centos7
 
 ## Configuration for Jenkins build pipelines
 
 USER root
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -qqy \
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        gnupg2 \
-        software-properties-common && \
-    curl -fsSL https://download.docker.com/linux/debian/gpg | \
-        apt-key add - && \
-    add-apt-repository \
-        "deb [arch=amd64] https://download.docker.com/linux/debian \
-        $(lsb_release -cs) \
-        stable" && \
-    apt-get update  -qq && \
-    apt-get install -y docker-ce && \
-    usermod -aG docker jenkins && \
-    apt-get clean
+RUN \
+    yum remove docker \
+        docker-client \
+        docker-client-latest \
+        docker-common \
+        docker-latest \
+        docker-latest-logrotate \
+        docker-logrotate \
+        docker-engine && \
+    yum install -y yum-utils && \
+    yum-config-manager --add-repo \
+        https://download.docker.com/linux/centos/docker-ce.repo && \
+    yum install -y docker-ce-cli && \
+    yum -y clean all && \
+    rm -rf /var/cache/yum && \
+    usermod -aG docker jenkins
 
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 ENV PLUGINS_FORCE_UPGRADE=true
