@@ -5,6 +5,7 @@ FROM jenkins/jenkins
 USER root
 
 RUN apt-get update && \
+    apt-get upgrade && \
     apt-get install -qqy \
         apt-transport-https \
         ca-certificates \
