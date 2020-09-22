@@ -15,7 +15,7 @@ pipeline {
 
         stage('Scan Image') {
             steps {
-                sh 'echo "sentinel:5001/jenkins-builder:1.1.${env.BUILD_NUMBER} Dockerfile" > anchore_images'
+                sh 'echo "sentinel:5001/jenkins-builder:1.1.${BUILD_NUMBER} Dockerfile" > anchore_images'
                 anchore 'anchore_images'
             }
         }
