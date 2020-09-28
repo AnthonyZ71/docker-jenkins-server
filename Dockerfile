@@ -19,9 +19,7 @@ RUN \
     yum install -y docker-ce-cli && \
     yum -y clean all && \
     rm -rf /var/cache/yum && \
-    usermod -aG docker jenkins && \
-    usermod -aG 999 jenkins
-# On my system, docker is group 999, not 997 like inside of centos7
+    usermod -aG docker jenkins
 
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 ENV PLUGINS_FORCE_UPGRADE=true
